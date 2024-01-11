@@ -2,6 +2,9 @@
   <div>
     Calendar #######--------------------
     <div>
+    </div>
+
+    <div>
       {{ props.notes }}
     </div>
     <div v-for="(item, index) in notes" :key="index">
@@ -15,8 +18,7 @@
 
 <script setup>
 
-
-import { toRef } from "vue";
+import { ref, toRef } from "vue";
 
 const props = defineProps(["notes"]);
 const { notes } = toRef(props);

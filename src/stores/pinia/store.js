@@ -109,7 +109,7 @@ export const useStore = defineStore('Task', {
             console.log('doc updated note:', doc)
         },
         async removeNote(_id) {
-            const doc = await NoteService.removeNoteById(_id,)
+            const doc = await NoteService.removeNoteById(_id)
             this.note = "remove"
             console.log('doc removed note:', doc)
         },

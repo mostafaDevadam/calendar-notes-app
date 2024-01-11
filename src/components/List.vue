@@ -17,6 +17,10 @@ import { toRef } from "vue";
 const props = defineProps(["notes"]);
 const { notes } = toRef(props);
 
+const emits = defineEmits([""])
+
+
+
 
 
 </script>

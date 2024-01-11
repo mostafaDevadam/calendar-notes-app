@@ -24,6 +24,7 @@ import { useStore } from "./stores/pinia/store";
 import Header from "@/components/Header.vue";
 import { UserService } from "./services/api/requests/user/user.service";
 
+
 const store = useStore();
 
 const router = useRouter();
@@ -66,6 +67,12 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+/*@import '~bootstrap';
+@import '~bootstrap-vue';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+*/
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

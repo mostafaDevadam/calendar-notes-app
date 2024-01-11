@@ -95,6 +95,8 @@ onMounted(async () => {
   //const docs = await NoteService.getAllNotes()
   //console.log("fetch all notes:", docs)
   await store.setFetchAllNotes();
+  console.log("user id**:", user,)
+ // await store.setFetchAllNotesByUserID()
 });
 </script>
 
