@@ -34,4 +34,8 @@ export class UserService {
         console.log(usr)
         return usr
     }
+
+    async update(_id: any, data: any) {
+        return await this.userModel.findByIdAndUpdate(_id, data, {new: true})
+    }
 }

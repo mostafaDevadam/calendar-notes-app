@@ -10,6 +10,8 @@ export class NoteController {
     @Post('/:user_id')
     async createNote(@Param('user_id') user_id: any,@Body() body_: any): Promise<any> {
         const {title, body} = body_
+        const obj = {user: user_id, title, body}
+        console.log(obj)
         return await this.service.create({title, body, user: user_id})
     }
 

@@ -17,6 +17,9 @@ export const UserModel = mongoose.model("User", UserSchema)
 
 @Schema({ timestamps: true})
 export class User {
+    @Prop({ required: false})
+    name: string;
+
     @Prop({ required: true})
     email: string;
 
@@ -31,6 +34,14 @@ export class User {
 
     @Prop({default: now()})
     updatedAt: Date;
+
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
+
+UserSchema.pre('save', function (password) {
+   //this.password = password
+   return 
+})
+
