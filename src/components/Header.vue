@@ -1,10 +1,10 @@
 <template>
   <nav>
      <template v-if="store.isAuth">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/notes">Notes</router-link> |
+      <!--<router-link to="/">Home</router-link> |-->
+      <router-link to="/notes">Home</router-link> |
       <router-link to="/notes/new">NewNote</router-link> |
-      <router-link to="/about">About</router-link> |
+      <!--<router-link to="/about">About</router-link>--> |
       <router-link to="/profile">Profile</router-link> |
 
       <span v-if="userDoc"> <router-link to="/profile" class="link">{{ userDoc.email }}</router-link></span> |
@@ -12,7 +12,7 @@
     </template>
 
 
-    <router-link to="/login" v-if="!store.isAuth">Login {{ auth}} </router-link>
+    <router-link to="/login" v-if="!store.isAuth">Login</router-link>
 
     <a href="javascript:void(0)" @click="logout" v-if="store.isAuth">logout</a>
   </nav>

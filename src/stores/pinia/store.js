@@ -13,6 +13,10 @@ export const useStore = defineStore('Task', {
         note: null,
         userDoc: null,
         notesByUser: [],
+        current_note: null,
+        current_user: null,
+        updated_user: null,
+        update_current_user: null,
 
 
     }),
@@ -36,7 +40,11 @@ export const useStore = defineStore('Task', {
         },
         getEditNote(state) {
             return state.note
+        },
+        getUserAfterSignin(state) {
+             return state.user
         }
+
     },
     actions: {
         async setAuth(val) {
@@ -113,6 +121,21 @@ export const useStore = defineStore('Task', {
             this.note = "remove"
             console.log('doc removed note:', doc)
         },
+        async setUpdateCurrentUser(data) {
+            this.update_current_user = data
+        },
+        async updateCurrentUser(){
+            console.log('update user by store:', _id, data)
+            const doc = await UserService.patchUpdateUserByID(this.update_current_user._id, this.update_current_user)
+            this.updated_user = doc
+            this.current_user = doc
+            console.log('doc updated user:', doc)
+        },
+        async updateUser(_id, data) {
+            console.log('update user by store:', _id, data)
+            const doc = await UserService.patchUpdateUserByID(_id, data)
+            console.log('doc updated user:', doc)
+        }
 
     }
 })

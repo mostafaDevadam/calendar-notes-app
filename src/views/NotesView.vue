@@ -4,22 +4,22 @@
 
     <div>
       <div>
-        <button @click="toggle()">
+        <!--<button @click="toggle()">
           <span v-if="isList">list</span><span v-else>calendar</span>
-        </button>
-        <br />
-        <br />
-        <button @click="toggle()" :disabled="isList">List</button>
-        <button @click="toggle()" :disabled="!isList">calendar</button>
+        </button>-->
+
+        <v-btn @click="toggle()" :disabled="isList">List</v-btn>
+        <v-btn @click="toggle()" :disabled="!isList">calendar</v-btn>
       </div>
       <br />
 
-      <div v-if="notes">
-        <div v-if="isList">
+      <div v-show="notes">
+        <div v-show="isList">
+
           <List :notes="notes" />
         </div>
-        <div v-else>
-          <Calendar :notes="notes" />
+        <div v-show="!isList">
+          <FCalendar :notes="notes" />
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
     <br />
     <br />
 
-    <div v-if="notes">
+    <!--<div v-if="notes">
       <div
         v-for="(item, index) in notes"
         :key="index"
@@ -35,9 +35,9 @@
       >
         item: {{ item.title }}
       </div>
-    </div>
+    </div>-->
 
-    <button @click="navToNote">view</button>
+    <!--<button @click="navToNote">view</button>
 
     <button @click="navToEdit">edit</button>
     <button
@@ -48,7 +48,7 @@
       "
     >
       remove
-    </button>
+    </button>-->
   </div>
 </template>
 
@@ -59,13 +59,15 @@ import { toRefs, ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import List from "@/components/List.vue";
 import Calendar from "@/components/Calendar.vue";
+import FCalendar from "@/components/FCalendar.vue";
+
 
 const router = useRouter();
 
 const store = useStore();
 const { user, userDoc, notes } = toRefs(store);
 
-const isList = ref(false);
+const isList = ref(true);
 
 const note_id = "659bb95c0f5f634df4b24b92";
 

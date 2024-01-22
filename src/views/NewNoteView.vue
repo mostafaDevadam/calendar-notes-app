@@ -1,8 +1,9 @@
 <template>
   <div>
-    New Note , <span v-if="_id">id:{{ _id }}</span>
-
-    <button @click="handleCreate">create</button>
+    <div v-if="_id">
+    
+        <FormNote :action_type="action_type" @handleClick="handleCreate" :data="note" />
+   </div>
   </div>
 </template>
 
@@ -10,22 +11,35 @@
 import { NoteService } from "@/services/api/requests/note/note.service";
 import { computed, onBeforeMount, onMounted, ref, toRefs } from "vue";
 import { useStore } from "../stores/pinia/store";
+import FormNote from "@/components/FormNote.vue";
 
 const store = useStore();
 const { user, userDoc } = toRefs(store);
 const usr = ref(user);
 const user_doc = ref(userDoc);
 const _id = ref(null);
+const note = ref({title: "", body: ""})
+const action_type = ref('create')
+
 
 const handleCreate = async (e) => {
   console.log("create note...!");
   if (_id.value) {
-    console.log("_id*:", _id.value);
+    action_type.value = "create"
+    console.log("_id*:", _id.value, note.value);
     //const doc = await NoteService.postCreateNoteByUserID(_id.value, {title: "tolla", body: "booda"})
-    await store.createNote(_id.value, { title: "tolla2", body: "booda2" });
-    //console.log("doc note: ", doc)
+    if(note.value){
+      await store.createNote(_id.value, note.value);
+      //console.log("doc note: ", doc)
+    }
   }
 };
+
+const handleClick = () => {
+  if(action_type.value === 'create'){
+        handleCreate()
+  }
+}
 
 /*
 _id.value = computed(() => {
